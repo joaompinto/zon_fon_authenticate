@@ -34,8 +34,8 @@ urllib2.install_opener(opener)
 data = urllib2.urlopen(START_URL)
 
 auth_url = data.geturl()
-if not auth_url.startswith('https://zon.portal.fon.com/'):
-	print "Zon fon authentication was not requested. Already authenticated?"
+if not auth_url.startswith('https://nos.portal.fon.com'):
+	print "Nos fon authentication was not requested. Already authenticated?"
 	sys.exit(1)
 
 
