@@ -27,7 +27,7 @@ FON_PASSWORD = getenv('FON_PASSWORD')
 
 #Pass arguments option
 if len(sys.argv) < 2 and (not FON_USERNAME or not FON_PASSWORD):
-	print "Error using script! Command: python zon_fon_authenticate.py <LOGIN> <PASSWORD>";
+	print "Command: python zon_fon_authenticate.py <LOGIN> <PASSWORD>";
 	sys.exit(1)
 
 FON_USERNAME = sys.argv[1]
@@ -42,7 +42,7 @@ urllib2.install_opener(opener)
 data = urllib2.urlopen(START_URL)
 
 auth_url = data.geturl()
-if not auth_url.startswith('https://zon.portal.fon.com/'):
+if not auth_url.startswith('https://zon.portal.fon.com/') and not auth_url.startswith('https://nos.portal.fon.com'):
 	print "Zon fon authentication was not requested. Already authenticated?"
 	sys.exit(1)
 
