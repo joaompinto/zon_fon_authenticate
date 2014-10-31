@@ -25,17 +25,25 @@ import sys
 FON_USERNAME = getenv('FON_USERNAME')
 FON_PASSWORD = getenv('FON_PASSWORD')
 
+#Pass arguments option
+if len(sys.argv) < 2 and (not FON_USERNAME or not FON_PASSWORD):
+	print "Command: python zon_fon_authenticate.py <LOGIN> <PASSWORD>";
+	sys.exit(1)
+
+FON_USERNAME = sys.argv[1]
+FON_PASSWORD = sys.argv[2]
+
 # Attempt to fetch the START_URL in order to be redirected
 # to the Zon@Fon authetincation page
-START_URL = 'http://www.speedtest.net'
+START_URL = 'http://www.sapo.pt'
 
 opener = urllib2.build_opener(urllib2.HTTPCookieProcessor)
 urllib2.install_opener(opener)
 data = urllib2.urlopen(START_URL)
 
 auth_url = data.geturl()
-if not auth_url.startswith('https://nos.portal.fon.com'):
-	print "Nos fon authentication was not requested. Already authenticated?"
+if not auth_url.startswith('https://zon.portal.fon.com/') and not auth_url.startswith('https://nos.portal.fon.com'):
+	print "Zon fon authentication was not requested. Already authenticated?"
 	sys.exit(1)
 
 
